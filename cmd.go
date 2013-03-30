@@ -52,14 +52,13 @@ func search(startPath string, recurs bool) []string {
 				return filepath.SkipDir
 			}
 		} else {
-			resolvedInfo := info
 			if info.Mode()&os.ModeSymlink > 0 {
-				resolvedInfo, err = os.Stat(path)
+				info, err = os.Stat(path)
 				if err != nil {
 					log.Fatal(err)
 				}
 			}
-			if !resolvedInfo.IsDir() {
+			if !info.IsDir() {
 				candidatePaths = append(candidatePaths, path)
 			}
 		}
