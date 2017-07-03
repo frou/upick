@@ -61,6 +61,7 @@ func run() error {
 		if *interactive {
 			lineReader.Scan()
 		} else {
+			fmt.Println()
 			break
 		}
 	}
