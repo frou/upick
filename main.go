@@ -101,6 +101,9 @@ func findCandidates(
 				}
 				if info.IsDir() {
 					// path is a directory according to Stat
+
+					// Symlinks whose targets are directories can result in
+					// cycles, so just ignore it.
 				} else {
 					// path is a regular file according to Stat
 					if matchRe.MatchString(basename) {
