@@ -43,7 +43,7 @@ func run() error {
 		return err
 	}
 
-	for lineReader.Scan() {
+	for {
 		candidatePaths, err := findCandidates(".", matchRe)
 		if err != nil {
 			return err
@@ -58,7 +58,9 @@ func run() error {
 			return err
 		}
 
-		if !*interactive {
+		if *interactive {
+			lineReader.Scan()
+		} else {
 			break
 		}
 	}
