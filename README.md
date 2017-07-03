@@ -21,16 +21,3 @@ Installation
 
     $ go get github.com/frou/upick
     $ # Command is installed in $GOPATH/bin
-
-Example Usage
-=============
-
-    project_ideas $ upick
-    Picked: webscale_database.txt
-    project_ideas $ # File is opened with Sublime Text.
-
-    presentations $ upick
-    Nothing to pick from.
-    presentations $ upick -r
-    Picked: Rich Hickey/2012 - The Value Of Values.mp4
-    presentations $ # File is opened with QuickTime.
