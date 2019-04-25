@@ -26,6 +26,9 @@ var (
 
 	match = flag.String("m", "",
 		"regular expression that whitelists eligible file basenames")
+
+	background = flag.Bool("b", false,
+		"background: launch the pick in the background")
 )
 
 func main() {
@@ -54,7 +57,12 @@ func run() error {
 		}
 		fmt.Print("Picked:", pick)
 
-		if err := stdext.Launch(pick); err != nil {
+		if *background {
+			err = stdext.LaunchInBackground(pick)
+		} else {
+			err = stdext.Launch(pick)
+		}
+		if err != nil {
 			fmt.Printf("\n\nERROR: ")
 			if *interactive {
 				fmt.Printf("%v\n\n", err)
