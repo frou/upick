@@ -63,9 +63,9 @@ func run() error {
 			err = stdext.Launch(pick)
 		}
 		if err != nil {
-			fmt.Printf("\n\nERROR: ")
+			fmt.Printf("\n\n")
 			if *interactive {
-				fmt.Printf("%v\n\n", err)
+				fmt.Printf("ERROR: %v\n\n", err)
 			} else {
 				return err
 			}
