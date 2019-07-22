@@ -29,6 +29,8 @@ var (
 
 	background = flag.Bool("b", false,
 		"background: launch the pick in the background")
+
+	// @todo #0 A -p flag to print the pick instead of launching it.
 )
 
 func main() {
