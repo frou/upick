@@ -99,9 +99,8 @@ func findCandidates(
 			if !*includeDotfiles && len(basename) > 1 && basename[0] == '.' {
 				if info.IsDir() {
 					return filepath.SkipDir
-				} else {
-					return nil
 				}
+				return nil
 			}
 
 			if info.IsDir() {
@@ -111,25 +110,24 @@ func findCandidates(
 					return nil
 				}
 				return filepath.SkipDir
-			} else {
-				// path is a regular file according to Lstat
-				info, err = os.Stat(path)
-				if err != nil {
-					return err
-				}
-				if info.IsDir() {
-					// path is a directory according to Stat
-
-					// Symlinks whose targets are directories can result in
-					// cycles, so just ignore it.
-				} else {
-					// path is a regular file according to Stat
-					if matchRe.MatchString(basename) {
-						candidates = append(candidates, path)
-					}
-				}
-				return nil
 			}
+			// path is a regular file according to Lstat
+			info, err = os.Stat(path)
+			if err != nil {
+				return err
+			}
+			if info.IsDir() {
+				// path is a directory according to Stat
+
+				// Symlinks whose targets are directories can result in
+				// cycles, so just ignore it.
+			} else {
+				// path is a regular file according to Stat
+				if matchRe.MatchString(basename) {
+					candidates = append(candidates, path)
+				}
+			}
+			return nil
 		})
 	return candidates, err
 }
@@ -137,7 +135,7 @@ func findCandidates(
 func pick(candidatePaths []string) (string, error) {
 	n := len(candidatePaths)
 	if n == 0 {
-		return "", errors.New("Nothing to pick from.")
+		return "", errors.New("nothing to pick from")
 	}
 	return candidatePaths[rand.Int()%n], nil
 }
